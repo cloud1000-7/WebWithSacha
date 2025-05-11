@@ -1,42 +1,31 @@
 <h2>{{ title }}</h2>
 
-<!--@if (!formVisible) { !-->
-  <main class="container">
-    <!--
-    <button class="ajouterBtn" mat-flat-button color="accent" (click)="onAddAssignmentBtnClick()">
-      Ajouter un devoir
-    </button>
-  -->
-    <div class="ajouterBtn">
-      <a routerLink="/add">
-        <button class="ajouterBtn"
-          mat-flat-button color="accent">
-          Ajouter Assignments
-        </button>
-      </a>
-    </div>
-    <ul>
-      @for (assignment of assignments; track assignment.name) {
-        <nav><a routerLink="/assignment/{{assignment.id}}">
+<main class="container">
+  <div class="ajouterBtn">
+    <a routerLink="/add">
+      <button class="ajouterBtn">Assignments</button>
+    </a>
+  </div>
+
+  <ul>
+    @for (assignment of assignments; track assignment.name) {
+      <nav>
+        <a routerLink="/assignment/{{assignment.id}}">
           @if (assignment.submitted) {
-            <li appSubmitted (click)="assignmentClique(assignment)">
-              The assignment : {{ assignment.name }} has been submitted in time!
+            <li class="submitted" (click)="assignmentClique(assignment)">
+              The assignment: {{ assignment.name }} has been submitted in time!
             </li>
           } @else {
-            <li appNotSubmitted (click)="assignmentClique(assignment)">
-              The assignment : {{ assignment.name }} is still due on
+            <li class="notSubmitted" (click)="assignmentClique(assignment)">
+              The assignment: {{ assignment.name }} is still due on
               {{ assignment.dueDate | date }}, NOT SUBMITTED YET!
             </li>
           }
-        </a></nav>
-      }
-    </ul>
-
-    <!--
-    <app-assignment-detail [assignmentTransmis]="assignmentSelectionne"></app-assignment-detail>
-  -->
-  </main>
-<!--}-->
+        </a>
+      </nav>
+    }
+  </ul>
+</main>
 
 <table>
   <thead>
@@ -56,10 +45,5 @@
     }
   </tbody>
 </table>
-<!--
-@if (formVisible) {
-  <app-add-assignment (nouvelAssignment)="onNouvelAssignment($event)"></app-add-assignment>
-}
--->
 
 <router-outlet></router-outlet>
