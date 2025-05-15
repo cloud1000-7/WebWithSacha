@@ -36,22 +36,32 @@ export class AppComponent {
   username = "";
   password = "";
   loggedIn: boolean;
+  loginError = '';
   opened = false;
 
   constructor (private authService:AuthService, private router: Router){
     this.loggedIn = this.authService.loggedIn;
   }
 
-  login(){
-    this.authService.logIn(this.username,this.password);
-    this.loggedIn = true;
+  login() {
+    this.loginError = '';
+    this.authService.logIn(this.username, this.password).then(success => {
+      if (!success) {
+        this.loginError = 'Erreur : Identifiants incorrects.';
+        this.loggedIn = false;
+      } else {
+        this.loggedIn = true;
+      }
+    });
   }
 
   logout(){
     this.authService.logout();
     this.router.navigate(['/home']);
     this.loggedIn = false;
-  }
+    this.loginError = '';
+    this.username = '';
+    this.password = '';  }
 
   toggleSidebar() {
     // Ici, nous n'avons pas besoin de méthode spécifique, mais on pourrait utiliser un ViewChild si nécessaire

@@ -1,40 +1,40 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private validUsers = [
-    { username: 'admin', password: 'admin' },
-    { username: 'user', password: 'user' }
-  ];
-
+  private apiUrl = 'http://localhost:8010/api/users';
   loggedIn = false;
 
-  logIn(username: string, password: string) {
-    const user = this.validUsers.find(u => u.username === username && u.password === password);
-    if (user) {
-      this.loggedIn = true;
-      console.log("true");
-    }  else {
+  constructor(private http: HttpClient) {}
+
+logIn(username: string, password: string): Promise<boolean> {
+  return this.http.post<any>(`${this.apiUrl}/login`, { user: username, password: password }).toPromise()
+    .then(response => {
+      if (response && response.message === 'Connexion réussie') {
+        this.loggedIn = true;
+        return true;
+      } else {
+        this.loggedIn = false;
+        return false;
+      }
+    })
+    .catch(() => {
+      // NE PAS afficher d'erreur ici
       this.loggedIn = false;
-      console.log("false");
-    }
-  }
+      return false;
+    });
+}
+
 
   logout() {
     this.loggedIn = false;
   }
 
-  isAdmin(){
-    const isUserAdmin = new Promise(
-      (resolve, reject) => {
-        resolve(this.loggedIn)
-      }
-    );
-
-    return isUserAdmin;
+  isAdmin(): Promise<boolean> {
+    return Promise.resolve(this.loggedIn);
   }
-
 }
