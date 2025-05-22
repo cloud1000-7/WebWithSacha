@@ -30,6 +30,8 @@ export class AddAssignmentComponent {
   // FOR THE FORM INPUT FIELDS
   assignmentName = "";
   assignmentDueDate!:Date;
+  assignmentAuthor = "";
+  assignmentGrade = "";
 
   addAssignment() {
     const newAssignment = new Assignment();
@@ -37,6 +39,8 @@ export class AddAssignmentComponent {
     newAssignment.name = this.assignmentName;
     newAssignment.dueDate = this.assignmentDueDate;
     newAssignment.submitted = false;
+    newAssignment.author = this.assignmentAuthor;
+    newAssignment.grade = this.assignmentGrade;
 
     //this.nouvelAssignment.emit(newAssignment);
     this.assignmentsService.addAssignment(newAssignment).subscribe(message => {

@@ -71,4 +71,13 @@ export class AssignmentDetailComponent {
     return this.authService.loggedIn;
   }
 
+isGradeValid(): boolean {
+  const gradeStr = this.assignmentTransmis.grade;
+  if (!gradeStr || gradeStr.trim() === '') return false;
+  const grade = +gradeStr;
+  return !isNaN(grade) && grade >= 0 && grade <= 20;
+}
+
+
+
 }

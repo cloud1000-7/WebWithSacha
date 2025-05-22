@@ -3,8 +3,10 @@ let Schema = mongoose.Schema;
 
 let AssignmentSchema = Schema({
     id: Number,
+    author: String,
     dueDate: Date,
     name: String,
+    grade: String,
     submitted: Boolean
 });
 

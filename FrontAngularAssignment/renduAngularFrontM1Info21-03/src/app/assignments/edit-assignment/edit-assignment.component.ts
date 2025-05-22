@@ -28,6 +28,8 @@ export class EditAssignmentComponent {
   // Pour les champs de formulaire
   nomAssignment = '';
   dateDeRendu?: Date = undefined;
+  author: "";
+  grade: "";
 
   constructor(
     private assignmentsService: AssignmentsService,
@@ -57,6 +59,8 @@ export class EditAssignmentComponent {
     // on récupère les valeurs dans le formulaire
     this.assignment.name = this.nomAssignment;
     this.assignment.dueDate = this.dateDeRendu;
+    this.assignment.author = this.author;
+    this.assignment.grade = this.grade;
     this.assignmentsService
       .updateAssignment(this.assignment)
       .subscribe((message) => {

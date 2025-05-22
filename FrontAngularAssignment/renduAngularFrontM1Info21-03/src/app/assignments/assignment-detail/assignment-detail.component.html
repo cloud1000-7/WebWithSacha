@@ -3,9 +3,11 @@
       <mat-card-content>
         <mat-card-title>{{ assignmentTransmis.name }}</mat-card-title>
         <mat-card-subtitle>{{ assignmentTransmis.dueDate | date: "dd/MM/yyyy" }}</mat-card-subtitle>
+        <mat-card-subtitle>Author: {{ assignmentTransmis.author  }}</mat-card-subtitle>
+        <mat-card-subtitle>Grade: {{ assignmentTransmis.grade  }}</mat-card-subtitle>
 
         @if (!assignmentTransmis.submitted) {
-          <mat-checkbox (click)="onAssignmentRendu()">
+          <mat-checkbox (click)="onAssignmentRendu()" [disabled]="!isAdmin() || !isGradeValid()">
             Devoir rendu
           </mat-checkbox>
         }
@@ -17,7 +19,7 @@
           </button>
         <!--</a></nav>-->
 
-        <button id="bottom" mat-flat-button color="warn" (click)="onDelete()">
+        <button id="bottom" mat-flat-button color="warn" (click)="onDelete()" [disabled]="!isAdmin()">
           DELETE ME
         </button>
       </mat-card-content>

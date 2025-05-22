@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AssignmentsService {
   backendURL = 'http://localhost:8010/api/assignments'
-  assignments:Assignment[] = [
+  /*assignments:Assignment[] = [
     {
       id:1,
       name: "Assignment 1",
@@ -28,7 +28,7 @@ export class AssignmentsService {
       dueDate: new Date("2021-03-01"),
       submitted: false
     }
-  ];
+  ];*/
 
   constructor(private loggingService:LoggingService,
     private Http:HttpClient) { }
