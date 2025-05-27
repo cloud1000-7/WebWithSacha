@@ -1,4 +1,4 @@
-import { Component, /*EventEmitter, Output*/ } from '@angular/core';
+import { Component, OnInit, /*EventEmitter, Output*/ } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
@@ -9,29 +9,43 @@ import { Assignment } from '../assignment.model';
 import { AssignmentsService } from '../../shared/assignments.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../shared/auth.service';
+import { SubjectsService, Subject } from '../../shared/subjects.service';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-add-assignment',
   imports: [CommonModule, FormsModule, MatInputModule,
-    MatButtonModule, MatFormFieldModule, MatDatepickerModule],
+    MatButtonModule, MatFormFieldModule, MatDatepickerModule,MatSelectModule],
   templateUrl: './add-assignment.component.html',
   styleUrl: './add-assignment.component.css'
 })
-export class AddAssignmentComponent {
+export class AddAssignmentComponent  implements OnInit  {
 
   //@Output() nouvelAssignment = new EventEmitter<Assignment>();
 
   constructor (private assignmentsService: AssignmentsService,
                   private route: ActivatedRoute,
                   private router: Router,
-                  private authService:AuthService
-  ) {};
+                  private authService:AuthService,
+                  private subjectsService: SubjectsService
+
+  ) {}
+
+  ngOnInit(): void {
+    this.subjectsService.getSubjects().subscribe(data => {
+      this.subjects = data;
+    });
+  }
+
 
   // FOR THE FORM INPUT FIELDS
   assignmentName = "";
   assignmentDueDate!:Date;
   assignmentAuthor = "";
   assignmentGrade = "";
+  assignmentNote = "";
+  subjects: Subject[] = [];
+  selectedSubject: any = null;
 
   addAssignment() {
     const newAssignment = new Assignment();
@@ -41,6 +55,9 @@ export class AddAssignmentComponent {
     newAssignment.submitted = false;
     newAssignment.author = this.assignmentAuthor;
     newAssignment.grade = this.assignmentGrade;
+    newAssignment.note = this.assignmentNote;
+    newAssignment.subject = this.selectedSubject.subject;
+    newAssignment.teacher = this.selectedSubject.teacher;
 
     //this.nouvelAssignment.emit(newAssignment);
     this.assignmentsService.addAssignment(newAssignment).subscribe(message => {

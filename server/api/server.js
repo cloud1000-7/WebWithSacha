@@ -3,6 +3,7 @@ let app = express();
 let bodyParser = require('body-parser');
 let assignment = require('./routes/assignments');
 let usersRoutes = require('./routes/users');
+let subjectsRoutes = require('./routes/subjects');
 
 let mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
@@ -41,10 +42,13 @@ app.use(bodyParser.json());
 
 let port = process.env.PORT || 8010;
 
+app.use(express.static('public'));
+
 // les routes
 const prefix = '/api';
 
 app.use(prefix + '/users', usersRoutes);
+app.use(prefix + '/subjects', subjectsRoutes);
 
 app.route(prefix + '/assignments')
   .get(assignment.getAssignments);

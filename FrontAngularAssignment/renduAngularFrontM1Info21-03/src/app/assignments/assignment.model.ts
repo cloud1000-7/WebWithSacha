@@ -5,4 +5,7 @@ export class Assignment {
     submitted!: boolean;
     author!: String;
     grade!: String;
+    note!: String;
+    subject!: String;
+    teacher!: String;
 }

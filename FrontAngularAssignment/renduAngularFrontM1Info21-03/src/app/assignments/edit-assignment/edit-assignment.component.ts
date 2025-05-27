@@ -8,6 +8,8 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { Assignment } from '../assignment.model';
 import { AssignmentsService } from '../../shared/assignments.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SubjectsService, Subject } from '../../shared/subjects.service';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
  selector: 'app-edit-assignment',
@@ -19,6 +21,7 @@ import { ActivatedRoute, Router } from '@angular/router';
    MatFormFieldModule,
    MatDatepickerModule,
    MatButtonModule,
+   MatSelectModule,
  ],
  templateUrl: './edit-assignment.component.html',
  styleUrl: './edit-assignment.component.css',
@@ -28,18 +31,24 @@ export class EditAssignmentComponent {
   // Pour les champs de formulaire
   nomAssignment = '';
   dateDeRendu?: Date = undefined;
- author: string = "";
-grade: string = "";
+  author: string = "";
+  grade: string = "";
+  note: String = "";
+  subjects: Subject[] = [];
+  selectedSubject: any = null;
 
   constructor(
     private assignmentsService: AssignmentsService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private subjectsService: SubjectsService
   ) {}
 
   ngOnInit(): void {
     this.getAssignment();
-
+    this.subjectsService.getSubjects().subscribe(data => {
+      this.subjects = data;
+    });
     console.log("Query Params :");
     console.log(this.route.snapshot.queryParams);
     console.log("Fragment : ");
@@ -61,6 +70,9 @@ grade: string = "";
     this.assignment.dueDate = this.dateDeRendu;
     this.assignment.author = this.author;
     this.assignment.grade = this.grade;
+    this.assignment.note = this.note;
+    this.assignment.subject = this.selectedSubject.subject;
+    this.assignment.teacher = this.selectedSubject.teacher;
     this.assignmentsService
       .updateAssignment(this.assignment)
       .subscribe((message) => {

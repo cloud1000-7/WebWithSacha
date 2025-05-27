@@ -48,18 +48,26 @@
         <td>{{ assignment.dueDate | date }}</td>
         <td>{{ assignment.submitted ? 'Yes' : 'No' }}</td>
 
-        <!-- matiere нет в классе — заглушка 
+        <!-- matiere нет в классе — заглушка
         <td>-</td>
 -->
+        <td>{{ assignment.subject || '-' }}</td>
+
         <!-- заменено: auteur => author -->
-        <td>{{ assignment.author || '-' }}</td>
+        <td>{{ assignment.author ?? '-' }}</td>
 
         <!-- заменено: note => grade -->
         <td>{{ assignment.grade ?? '-' }}</td>
 
         <!-- image  -->
         <td>
-          <span style="color: gray; font-size: 0.9em;">No image</span>
+           @if (assignment.subject) {
+            <img
+              [src]="'http://localhost:8010/' + assignment.subject + '.jpg'"
+              alt="{{ assignment.subject }}"
+              style="width: 60px; height: auto; border-radius: 4px;"
+            />
+           }
         </td>
 
         <td>
