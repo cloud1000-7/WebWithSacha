@@ -29,10 +29,29 @@
       </mat-form-field>
 
     <mat-form-field>
+        <mat-label>Choose a subject</mat-label>
+        <mat-select [(ngModel)]="selectedSubject" name="subject" required>
+            @for (subject of subjects; track subject._id) {
+            <mat-option [value]="subject">
+                {{ subject.subject }} ({{ subject.teacher }})
+            </mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
         <input matInput
             placeholder="Assignment Grade"
             name="grade"
             [(ngModel)]="assignmentGrade"
+            required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput
+            placeholder="Assignment Remark"
+            name="note"
+            [(ngModel)]="assignmentNote"
             required>
     </mat-form-field>
 

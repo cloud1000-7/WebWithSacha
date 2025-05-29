@@ -23,7 +23,6 @@ logIn(username: string, password: string): Promise<boolean> {
       }
     })
     .catch(() => {
-      // NE PAS afficher d'erreur ici
       this.loggedIn = false;
       return false;
     });

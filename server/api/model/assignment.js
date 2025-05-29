@@ -1,4 +1,5 @@
 let mongoose = require('mongoose');
+const subjects = require('./subjects');
 let Schema = mongoose.Schema;
 
 let AssignmentSchema = Schema({
@@ -7,7 +8,10 @@ let AssignmentSchema = Schema({
     dueDate: Date,
     name: String,
     grade: String,
-    submitted: Boolean
+    submitted: Boolean,
+    note: String,
+    subject: String,
+    teacher: String,
 });
 
 // C'est à travers ce modèle Mongoose qu'on pourra faire le CRUD
