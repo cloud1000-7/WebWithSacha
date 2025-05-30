@@ -35,7 +35,8 @@ Access the live version here:
       .........
 7. How to run without Live version
    In the ...\WebWithSacha-master.zip\WebWithSacha-master\server\api
-         npm install
+   
+   npm install
          npm start
    
 In the  ...\WebWithSacha-master\FrontAngularAssignment\renduAngularFrontM1Info21-03
