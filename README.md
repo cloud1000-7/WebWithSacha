@@ -26,6 +26,8 @@
       Add/Edit forms with subject selection.
       Modal confirmation dialogs.
       Hosted on Render.com or similar hosting.
+
+
 5. ⚙️ Tech Stack.
 
 
@@ -35,15 +37,22 @@ DATABASE WAS CREATED WITH FAKER
       Database: MongoDB Atlas (cloud)
       UI: Angular Material
       Hosting: Render.com
+
+      
 6. 🔐 Login Credentials.
 
 
 login: admin
    password: admin
+
+   
 7. ☁️ Hosted App.
+
 
 Access the live version here:
       .........
+
+
 8. How to run without Live version
    In the ...\WebWithSacha-master.zip\WebWithSacha-master\server\api
    
