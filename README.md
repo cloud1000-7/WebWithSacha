@@ -1,8 +1,14 @@
-1. 📌 Assignment website
+1. 📌 Assignment website.
+
+   
      The purpose of the project is to create a website that has its own database with which it can interact. The essence is to create a website where teachers and students can set their tasks, receive marks for them, and where there are criteria for subjects and grades. There is also a login and account system.
-2. 🎥 Video
+3. 🎥 Video.
+
+
      Link: https://youtu.be/uop7cAQyLjc
-3. 🚀 Features
+4. 🚀 Features.
+
+
     List of key features implemented, i.e.:
       Over 1000 assignments created and stored to your own MongoDB Atlas cloud database.
       Login/Password authentication (backend + frontend).
@@ -20,20 +26,25 @@
       Add/Edit forms with subject selection.
       Modal confirmation dialogs.
       Hosted on Render.com or similar hosting.
-4. ⚙️ Tech Stack
+5. ⚙️ Tech Stack.
+
+
 DATABASE WAS CREATED WITH FAKER
       Frontend: Angular
       Backend: Node.js, Express
       Database: MongoDB Atlas (cloud)
       UI: Angular Material
       Hosting: Render.com
-5. 🔐 Login Credentials
-     login: admin
+6. 🔐 Login Credentials.
+
+
+login: admin
    password: admin
-6. ☁️ Hosted App
+7. ☁️ Hosted App.
+
 Access the live version here:
       .........
-7. How to run without Live version
+8. How to run without Live version
    In the ...\WebWithSacha-master.zip\WebWithSacha-master\server\api
    
    npm install
