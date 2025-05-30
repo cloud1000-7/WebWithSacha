@@ -34,8 +34,10 @@ DATABASE WAS CREATED WITH FAKER
 Access the live version here:
       .........
 7. How to run without Live version
-   In the D:\browser download\cache\WebWithSacha-master.zip\WebWithSacha-master\server\api
+   In the ...\WebWithSacha-master.zip\WebWithSacha-master\server\api
          npm install
          npm start
-   In the  D:\browser download\cache\WebWithSacha-master.zip\WebWithSacha-master\FrontAngularAssignment\renduAngularFrontM1Info21-03
-         npm start
+   
+In the  ...\WebWithSacha-master\FrontAngularAssignment\renduAngularFrontM1Info21-03
+
+				 npm start
